@@ -1,0 +1,18 @@
+{
+  "name": "kvo2022",
+  "version": "1.0.1",
+  "description": "Приложение для подачи КВО и отчетов ЛПАБ",
+  "author": "Ilmir <khusnutdinov.ilmir.w7@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/camera": "^5.0.9",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.7.0",
+    "@capacitor/filesystem": "^5.2.1",
+    "@capacitor/ios": "^5.7.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.7.0"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "appId": "kvo.app",
+  "appName": "Подача КВО",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "Camera": {
+      "cameraUsageDescription": "Доступ к камере необходим для фотографий и видео.",
+      "photoLibraryUsageDescription": "Доступ к фотогалерее необходим для выбора фотографий.",
+      "ios": {
+        "cameraPermission": {
+          "description": "Доступ к камере необходим для фотографий и видео."
+        },
+        "photoLibraryPermission": {
+          "description": "Доступ к фотогалерее необходим для выбора фотографий."
+        },
+        "microphonePermission": {
+          "description": "Доступ к микрофону необходим для записи аудио."
+        }
+      },
+      "android": {
+        "cameraPermission": {
+          "description": "Доступ к камере необходим для фотографий и видео."
+        }
+      }
+    },
+    "Filesystem": {
+      "ios": {
+        "directory": "DATA",
+        "requestPermission": true
+      },
+      "android": {
+        "directory": "DATA",
+        "requestPermission": true
+      }
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

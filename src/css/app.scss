@@ -1,0 +1,73 @@
+@import "~normalize.css";
+@import "./quasar.variables.scss";
+
+.env-t {
+  padding-top: max(16px, env(safe-area-inset-top, 20px));
+}
+
+.env-b {
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 20px));
+}
+.p-content {
+  padding-right: $pr;
+  padding-left: $pl;
+}
+
+.pb {
+  padding-bottom: $pb;
+}
+
+.pt {
+  padding-top: $pt;
+}
+.-m-content {
+  margin-right: -$pr;
+  margin-left: -$pl;
+}
+
+.q-field--outlined.q-field--highlighted .q-field__control:after {
+  border-width: 1px;
+}
+
+.line {
+  border: 1px solid $border;
+}
+
+.reason {
+  background: $negative-light;
+  padding: 20px 0;
+
+  &__title {
+    color: $negative;
+  }
+}
+
+.reason {
+  margin-bottom: 25px;
+}
+.info {
+  padding-bottom: 25px;
+  word-break: break-word;
+}
+.info__title {
+  color: $accent;
+}
+.reason__title,
+.info__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  padding-bottom: 10px;
+}
+.reason__text,
+.info__text {
+  font-size: 16px;
+  line-height: 21px;
+  &:not(:last-child) {
+    margin-bottom: 7px;
+  }
+}
+
+.close {
+  color: $grey-light;
+}

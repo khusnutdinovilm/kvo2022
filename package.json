@@ -1,0 +1,57 @@
+{
+  "name": "kvo2022",
+  "version": "1.0.1",
+  "description": "Приложение для подачи КВО и отчетов ЛПАБ",
+  "productName": "Подача КВО",
+  "author": "Ilmir <khusnutdinov.ilmir.w7@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "quasar dev",
+    "build ios": "quasar -m capacitor -T ios --ide",
+    "build android": "quasar -m capacitor -T android --ide"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/camera": "^5.0.9",
+    "@capacitor/core": "^5.7.0",
+    "@capacitor/filesystem": "^5.2.1",
+    "@capacitor/ios": "^5.7.0",
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "dotenv": "^16.0.0",
+    "jetifier": "^2.0.0",
+    "ky": "^0.28.7",
+    "moment": "^2.29.1",
+    "normalize.css": "^8.0.1",
+    "quasar": "^2.0.0",
+    "sass": "^1.70.0",
+    "vee-validate": "^4.5.8",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0",
+    "vuex": "^4.0.1",
+    "yap": "0.0.2",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.0.0",
+    "@quasar/app": "^3.0.0",
+    "quasar-app-extension-tailwindcss": "^2.0.6"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
