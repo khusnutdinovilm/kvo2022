@@ -121,6 +121,8 @@ import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
+import { formatDateForBack } from "src/composition/formatCustomDate";
+
 import useDepartments from "src/use/departments";
 
 const { departmentsOptions, getDepartments, auditorsOptions, getAuditors } = useDepartments();
@@ -180,6 +182,9 @@ const addOrUpdateFormDataField = (key, value) =>
 const onSubmit = handleSubmit(async () => {
   isSubmitting.value = true;
   try {
+    const newDateLpab = formatDateForBack(dateLpab.value);
+    addOrUpdateFormDataField("dateLpab", newDateLpab);
+
     await store.dispatch("lpab/createLPAB", formData);
     resetForm();
     router.push({ name: "history" });

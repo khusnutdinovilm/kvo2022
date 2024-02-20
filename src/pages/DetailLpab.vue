@@ -17,11 +17,13 @@
       </p>
     </div>
 
-    <div v-if="!!item.rejection_comment?.length" class="info p-content">
-      <h3 class="info__title">Причина отклонения:</h3>
-      <p class="info__text">
-        {{ item.rejection_comment }}
-      </p>
+    <div v-if="!!item.rejection_comment?.length" class="reason">
+      <div class="p-content">
+        <h3 class="reason__title">Причина отклонения:</h3>
+        <p class="reason__text">
+          {{ item.rejection_comment }}
+        </p>
+      </div>
     </div>
 
     <div class="info p-content">
@@ -32,7 +34,7 @@
     </div>
 
     <div class="info p-content">
-      <h3 class="info__title">Дата проведения отчета ЛПАБ:</h3>
+      <h3 class="info__title">Дата проведения ЛПАБ:</h3>
       <p class="info__text">
         {{ item.date }}
       </p>

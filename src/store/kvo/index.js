@@ -12,7 +12,8 @@ export default {
         const data = await response.data
         const item = {
           ...data,
-          createdAt: formatCustomDate(data.createdAt, true)
+          createdAt: formatCustomDate(data.createdAt, true),
+          incidentDate: formatCustomDate(data.incidentDate),
         };
         return item;
       } catch (e) {

@@ -7,6 +7,7 @@ import messages from "./messages";
 import departments from "./departments";
 import lpab from "./lpab";
 import history from "./history";
+import platforms from "./platforms";
 
 /*
  * If not building with SSR mode, you can
@@ -25,7 +26,8 @@ export default store(function (/* { ssrContext } */) {
       messages,
       departments,
       lpab,
-      history
+      history,
+      platforms
     },
 
     // enable strict mode (adds overhead!)

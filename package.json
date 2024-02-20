@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "build ios": "quasar -m capacitor -T ios --ide",
-    "build android": "quasar -m capacitor -T android --ide"
+    "build-ios": "quasar build -m capacitor -T ios --ide",
+    "build-android": "quasar build -m capacitor -T android --ide"
   },
   "dependencies": {
     "@capacitor/android": "^5.7.0",

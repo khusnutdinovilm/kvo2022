@@ -10,6 +10,13 @@
       </p>
     </div>
 
+    <div class="info p-content">
+      <h3 class="info__title">Статус:</h3>
+      <p class="info__text">
+        {{ kvoStatus }}
+      </p>
+    </div>
+
     <div v-if="!!item.rejectionComment?.length" class="reason">
       <div class="p-content">
         <h3 class="reason__title">Причина отклонения:</h3>
@@ -23,6 +30,13 @@
       <h3 class="info__title">Дата подачи:</h3>
       <div class="info__text">
         {{ item.createdAt }}
+      </div>
+    </div>
+
+    <div class="info p-content">
+      <h3 class="info__title">Дата обнаружения опасности:</h3>
+      <div class="info__text">
+        {{ item.incidentDate }}
       </div>
     </div>
 
@@ -58,13 +72,6 @@
       <h3 class="info__title">Вложения:</h3>
       <p v-for="(file, idx) in item.files" :key="idx" class="info__text">
         {{ file.originalName }}
-      </p>
-    </div>
-
-    <div class="info p-content">
-      <h3 class="info__title">Статус:</h3>
-      <p class="info__text">
-        {{ kvoStatus }}
       </p>
     </div>
 

@@ -36,6 +36,11 @@ import HistoryEmpty from "src/components/History/Empty.vue";
 import { ref, onMounted, computed, watch } from "vue";
 import { useStore } from "vuex";
 
+import { useRouter, useRoute } from "vue-router";
+const route = useRoute();
+route.query.type = 0;
+const router = useRouter();
+
 const store = useStore();
 
 const types = ref([
@@ -43,9 +48,11 @@ const types = ref([
   { id: 1, label: "История КВО" },
   { id: 2, label: "История отчетов ЛПАБ" },
 ]);
-const applicationType = ref(types.value[0]);
+
+const applicationType = ref(types.value[parseInt(route.query.type)]);
 watch(applicationType, async (newType) => {
   try {
+    router.replace({ query: { type: newType.id } });
     loading.value = true;
     await getApplication[newType.id]();
     current_page.value = 1;

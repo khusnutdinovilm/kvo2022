@@ -7,3 +7,5 @@ export const formatCustomDate = (dateString, isWithTime) => {
   let minutes = date.getMinutes().toString().padStart(2, "0");
   return isWithTime ? `${day}.${month}.${year} ${hours}:${minutes}` : `${day}.${month}.${year}`;
 };
+
+export const formatDateForBack = (dateString) => dateString.split(".").reverse().join("-");

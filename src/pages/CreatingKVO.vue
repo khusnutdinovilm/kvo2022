@@ -108,6 +108,8 @@ import { useRouter } from "vue-router";
 
 import { Camera, CameraResultType } from "@capacitor/camera";
 
+import { formatDateForBack } from "src/composition/formatCustomDate";
+
 import useDepartments from "src/use/departments";
 const { departmentsOptions, getDepartments } = useDepartments();
 getDepartments();
@@ -166,8 +168,7 @@ const upload = async () => {
       type: `image/${image.format}`,
     });
     files.value.push(f);
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 const onRemoveFile = (index) => {
   files.value.splice(index, 1);
@@ -180,7 +181,11 @@ const addOrUpdateFormDataField = (key, value) =>
 const onSubmit = handleSubmit(async () => {
   isSubmitting.value = true;
   try {
+    const newIncidentDate = formatDateForBack(incidentDate.value);
+    addOrUpdateFormDataField("incidentDate", newIncidentDate);
+
     addOrUpdateFormDataField("isAnonymous", Number(isAnonymous.value));
+
     files.value.forEach((file) => formData.append("files[]", file));
 
     await store.dispatch("kvo/createKVO", formData);

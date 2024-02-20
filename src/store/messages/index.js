@@ -111,19 +111,21 @@ export default {
       }
     },
 
-    async markKvoMessageAsRead({ commit }, message_id) {
+    async markKvoMessageAsRead({ commit, dispatch }, message_id) {
       try {
         await markKvoMessageAsRead(message_id);
         commit("markKvoMessageAsRead", message_id);
+        await dispatch("getTotalUnreadMessages");
       } catch (e) {
         throw e;
       }
     },
 
-    async markLpabMessageAsRead({ commit }, message_id) {
+    async markLpabMessageAsRead({ commit, dispatch }, message_id) {
       try {
         await markLpabMessageAsRead(message_id);
         commit("markLpabMessageAsRead", message_id);
+        await dispatch("getTotalUnreadMessages");
       } catch (e) {
         throw e;
       }
