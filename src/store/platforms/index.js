@@ -7,6 +7,7 @@ export default {
 
   getters: {
     currentPlatform: (state) => state.currentPlatform,
+    isIosPlatform: (state) => state.currentPlatform === "ios",
   },
 
   mutations: {

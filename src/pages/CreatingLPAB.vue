@@ -190,7 +190,7 @@ const onSubmit = handleSubmit(async () => {
     router.push({ name: "history" });
     Notify.create({
       type: "positive",
-      message: `ЛПАБ отправлена.`,
+      message: `Отчет ЛПАБ отправлен`,
       timeout: 1500,
       position: "top",
     });

@@ -8,7 +8,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer class="footer__nav env-b" :class="{ 'ios-platform': isIos }">
+    <q-footer class="footer__nav env-b" :class="{ 'ios-platform': isIosPlatform }">
       <NavLink name="creating-kvo" exact />
       <NavLink name="creating-lpab" />
       <NavLink name="history" />
@@ -46,8 +46,7 @@ onMounted(async () => {
 
 const hasNotification = computed(() => store.getters["messages/hasNotification"]);
 
-const platformType = computed(() => store.getters["platforms/currentPlatform"]);
-const isIos = computed(() => platformType.value === "ios");
+const isIosPlatform = computed(() => store.getters["platforms/isIosPlatform"]);
 </script>
 
 <script>

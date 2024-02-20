@@ -13,7 +13,7 @@
         {{ application.department_name }}
       </p>
       <p>
-        <b>{{ isKvo ? `Дата инцидента:` : `Дата проведения ЛПАБ:` }}</b>
+        <b>{{ isKvo ? `Дата обнаружения опасности:` : `Дата проведения ЛПАБ:` }}</b>
         {{ application.date }}
       </p>
       <b v-if="isAnonymous">Анонимно</b>
