@@ -38,7 +38,8 @@ import { useStore } from "vuex";
 
 import { useRouter, useRoute } from "vue-router";
 const route = useRoute();
-route.query.type = 0;
+route.query.type = parseInt(route.query.type) || 0;
+
 const router = useRouter();
 
 const store = useStore();
