@@ -76,8 +76,6 @@ export default {
           status: application.status,
           isAnonymous: application.is_anonymous, // ? application.isAnonymous : undefined,
         }));
-        const current_page = await response.meta.current_page;
-        commit("setCurrentPage", current_page);
         commit("updateApplicationList", paginateApplicationList);
       } catch (error) {
         throw error;
@@ -145,7 +143,7 @@ export default {
           name: kvo.name,
           department_name: kvo.department.name,
           date: formatCustomDate(kvo.date),
-          status: kvo.status,
+          status: kvo.status.value,
           isAnonymous: kvo.isAnonymous,
         }));
         commit("updateKVOList", paginateKvoList);
