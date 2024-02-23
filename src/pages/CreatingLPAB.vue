@@ -40,6 +40,7 @@
           placeholder="Не заполнено"
           select-title="Выберите аудитора"
           v-model="auditorId"
+          :key="auditorsOptions"
           :error="auditorIdErr ? true : false"
           :options="auditorsOptions"
           :disabled="!choseDepartment"
