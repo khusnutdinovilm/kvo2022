@@ -4,6 +4,8 @@ import { getKVOList, getKVOListPaginate } from "src/api/kvo";
 
 import { formatCustomDate } from "src/composition/formatCustomDate";
 
+const NOT_DEPARTEMNT = "Подразделение не указано";
+
 export default {
   namespaced: true,
   state: () => ({
@@ -11,6 +13,7 @@ export default {
     lpabList: null,
     kvoList: null,
     last_page: null,
+    not_department: "Подразделение не указано",
   }),
   getters: {
     applicationList: (state) => state.applicationList,
@@ -71,7 +74,7 @@ export default {
         const paginateApplicationList = await response.data.map((application) => ({
           id: application.id,
           name: application.name,
-          department_name: application.department.name,
+          department_name: application.department?.name || NOT_DEPARTEMNT,
           date: formatCustomDate(application.date),
           status: application.status,
           isAnonymous: application.is_anonymous, // ? application.isAnonymous : undefined,
@@ -89,7 +92,7 @@ export default {
         const lpabList = await response.data.map((lpab) => ({
           id: lpab.id,
           name: lpab.name,
-          department_name: lpab.department_id.name,
+          department_name: lpab.department_id?.name || NOT_DEPARTEMNT,
           date: formatCustomDate(lpab.date),
           status: lpab.status,
         }));
@@ -106,7 +109,7 @@ export default {
         const paginateLpabList = await response.data.map((lpab) => ({
           id: lpab.id,
           name: lpab.name,
-          department_name: lpab.department_id.name,
+          department_name: lpab.department_id?.name || NOT_DEPARTEMNT,
           date: formatCustomDate(lpab.date),
           status: lpab.status,
         }));
@@ -122,9 +125,9 @@ export default {
         const kvoList = await response.data.map((kvo) => ({
           id: kvo.id,
           name: kvo.name,
-          department_name: kvo.department.name,
+          department_name: kvo.department?.name,
           date: formatCustomDate(kvo.date),
-          status: kvo.status.value,
+          status: kvo.status?.value,
           isAnonymous: kvo.isAnonymous,
         }));
         const last_page = await response.meta.last_page;
@@ -141,9 +144,9 @@ export default {
         const paginateKvoList = await response.data.map((kvo) => ({
           id: kvo.id,
           name: kvo.name,
-          department_name: kvo.department.name,
+          department_name: kvo.department?.name || NOT_DEPARTEMNT,
           date: formatCustomDate(kvo.date),
-          status: kvo.status.value,
+          status: kvo.status?.value,
           isAnonymous: kvo.isAnonymous,
         }));
         commit("updateKVOList", paginateKvoList);
