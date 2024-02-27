@@ -11,11 +11,13 @@ export const creatingLpabSchema = yup.object({
   departmentId: yup.number().required(),
   auditorId: yup.number().required(),
   staff: yup.number().required(),
-  descriptionBd: yup.string().required(),
-  measuresBd: yup.string().required(),
-  descriptionOd: yup.string().required(),
-  measuresOd: yup.string().required(),
+  descriptionBd: yup.string().default("Не заполнено").required(),
+  measuresBd: yup.string().default("Не заполнено").required(),
+  descriptionOd: yup.string().default("Не заполнено").required(),
+  measuresOd: yup.string().default("Не заполнено").required(),
 });
+
+export const initialLpabValues = creatingLpabSchema.default();
 
 export const creatingKvoSchema = yup.object({
   incidentDate: yup.string().required(),

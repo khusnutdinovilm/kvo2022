@@ -52,7 +52,6 @@
         <base-input
           placeholder="Не заполнено"
           v-model="staff"
-          type="text"
           :error="staffErr ? true : false"
         />
       </div>
@@ -65,6 +64,8 @@
           type="textarea"
           rows="4"
           :error="descriptionBdErr ? true : false"
+          @focus="clearIfValueIsDefault('descriptionBd')"
+          @blur="setDefaultIfFieldEmpty('descriptionBd')"
         />
       </div>
 
@@ -76,6 +77,8 @@
           type="textarea"
           rows="4"
           :error="measuresBdErr ? true : false"
+          @focus="clearIfValueIsDefault('measuresBd')"
+          @blur="setDefaultIfFieldEmpty('measuresBd')"
         />
       </div>
 
@@ -87,6 +90,8 @@
           type="textarea"
           rows="4"
           :error="descriptionOdErr ? true : false"
+          @focus="clearIfValueIsDefault('descriptionOd')"
+          @blur="setDefaultIfFieldEmpty('descriptionOd')"
         />
       </div>
 
@@ -98,6 +103,8 @@
           type="textarea"
           rows="4"
           :error="measuresOdErr ? true : false"
+          @focus="clearIfValueIsDefault('measuresOd')"
+          @blur="setDefaultIfFieldEmpty('measuresOd')"
         />
       </div>
 
@@ -116,7 +123,7 @@ import { useField, useForm } from "vee-validate";
 
 import { Notify } from "quasar";
 
-import { creatingLpabSchema } from "src/helper/validationSchemes";
+import { creatingLpabSchema, initialLpabValues } from "src/helper/validationSchemes";
 
 import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
@@ -132,10 +139,32 @@ getDepartments();
 const store = useStore();
 const router = useRouter();
 
-const { handleSubmit, resetForm } = useForm({
+const {
+  values: lpabForm,
+  handleSubmit,
+  setFieldValue,
+  resetForm,
+} = useForm({
   validationSchema: creatingLpabSchema,
+  initialValues: initialLpabValues,
 });
 const isSubmitting = ref(false);
+
+const formData = new FormData();
+const addOrUpdateFormDataField = (key, value) =>
+  formData.has(key) ? formData.set(key, value) : formData.append(key, value);
+
+const setDefaultIfFieldEmpty = (fieldName) => {
+  if (!lpabForm[fieldName]) {
+    setFieldValue(fieldName, "Не заполнено");
+  }
+};
+
+const clearIfValueIsDefault = (fieldName) => {
+  if (lpabForm[fieldName].trim() === "Не заполнено") {
+    setFieldValue(fieldName, "");
+  }
+};
 
 const { value: dateLpab, errorMessage: dateLpabErr } = useField("dateLpab");
 watch(dateLpab, (newDateLpab) => {
@@ -161,24 +190,25 @@ const { value: staff, errorMessage: staffErr } = useField("staff");
 watch(staff, (newStaff) => addOrUpdateFormDataField("staff", newStaff));
 
 const { value: descriptionBd, errorMessage: descriptionBdErr } = useField("descriptionBd");
-watch(descriptionBd, (newDescriptionBd) =>
-  addOrUpdateFormDataField("descriptionBd", newDescriptionBd)
-);
 
 const { value: measuresBd, errorMessage: measuresBdErr } = useField("measuresBd");
-watch(measuresBd, (newMeasuresBd) => addOrUpdateFormDataField("measuresBd", newMeasuresBd));
 
 const { value: descriptionOd, errorMessage: descriptionOdErr } = useField("descriptionOd");
-watch(descriptionOd, (newDescriptionOd) =>
-  addOrUpdateFormDataField("descriptionOd", newDescriptionOd)
-);
 
 const { value: measuresOd, errorMessage: measuresOdErr } = useField("measuresOd");
-watch(measuresOd, (newMeasuresOd) => addOrUpdateFormDataField("measuresOd", newMeasuresOd));
 
-const formData = new FormData();
-const addOrUpdateFormDataField = (key, value) =>
-  formData.has(key) ? formData.set(key, value) : formData.append(key, value);
+watch(
+  [descriptionBd, measuresBd, descriptionOd, measuresOd],
+  (newValues, oldValues) => {
+    const fieldsName = ["descriptionBd", "measuresBd", "descriptionOd", "measuresOd"];
+    for (let i = 0; i < newValues.length; i++) {
+      if (newValues[i] !== oldValues[i]) {
+        addOrUpdateFormDataField(fieldsName[i], newValues[i]);
+      }
+    }
+  },
+  { immediate: true }
+);
 
 const onSubmit = handleSubmit(async () => {
   isSubmitting.value = true;

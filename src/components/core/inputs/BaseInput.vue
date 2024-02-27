@@ -11,12 +11,13 @@
     dense
     :model-value="modelValue"
     @update:model-value="(e) => $emit('update:modelValue', e)"
+    @focus="() => $emit('focus')"
+    @blur="() => $emit('blur')"
   >
     <template v-slot:append>
       <slot> </slot>
     </template>
   </q-input>
-  <!-- <span class="danger">{{ textError }}</span> -->
 </template>
 
 <script setup>
@@ -56,7 +57,7 @@ defineProps({
   },
 });
 
-defineEmits(["update:modelValue"]);
+defineEmits(["update:modelValue", "focus", "blur"]);
 </script>
 
 <script>
