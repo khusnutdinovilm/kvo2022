@@ -22,6 +22,9 @@
       "android": {
         "cameraPermission": {
           "description": "Доступ к камере необходим для фотографий и видео."
+        },
+        "photoLibraryPermission": {
+          "description": "Доступ к фотогалерее необходим для выбора фотографий."
         }
       }
     },
